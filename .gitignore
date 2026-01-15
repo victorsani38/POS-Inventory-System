@@ -1,0 +1,20 @@
+# Ignore node dependencies
+node_modules/
+
+# Ignore environment files
+.env
+.env.local
+.env.production
+
+# Ignore build folders
+dist/
+build/
+
+# Ignore logs
+npm-debug.log*
+yarn-error.log*
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
