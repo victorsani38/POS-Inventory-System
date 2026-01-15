@@ -8,7 +8,7 @@ const OrderSchema = new mongoose.Schema({
     totalPrice:{type:Number, required:true},
     orderDate:{type:Date, default:Date.now}
 
-})
+}) 
 
-const Order = new mongoose.model("order", OrderSchema)
+const Order = new mongoose.model("order", OrderSchema) 
 export default Order

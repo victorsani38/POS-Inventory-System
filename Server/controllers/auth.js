@@ -5,7 +5,7 @@ import User from "../models/userModel.js";
 
 export const login = async(req, res) => {
     try{
-    const {name, email, password} = req.body
+    const { email, password} = req.body
     const user = await User.findOne({email})
     if(!user){
     return res.status(404).json({success:false, error:"user not found"})
@@ -18,7 +18,7 @@ export const login = async(req, res) => {
     res.cookie("token", token, {
         httpOnly:true,
         secure:process.env.NODE_ENV === "production",
-        sameSite:"lax",
+        sameSite:process.env.NODE_ENV == "production"?"none":"lax",
         maxAge:24*60*60*1000
     })
      return res.status(200).json({success:true, 
