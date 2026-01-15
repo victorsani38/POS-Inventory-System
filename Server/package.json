@@ -4,8 +4,9 @@
   "main": "seed.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --env-fil=.env server.js",
-    "server": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "seed":"seed.js"
   },
   "keywords": [],
   "author": "",
