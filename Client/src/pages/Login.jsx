@@ -17,7 +17,7 @@ const Login = () => {
         e.preventDefault()
         setLoading(true)
         try{
-        const user = await login(data)
+        const {data} = await login("/users/login", credentials)
         toast.success("user logged in successfully")
         if(user.role === "admin"){
             navigate("/admin-dashboard", {replace:true})
