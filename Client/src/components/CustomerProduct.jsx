@@ -1,7 +1,8 @@
+import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import axios from "../api/axios";
+
 import {toast} from "react-hot-toast"
 
 const CustomerProduct = () => {

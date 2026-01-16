@@ -1,4 +1,5 @@
-import axios from "../api/axios";
+
+import axios from "axios"
 import { createContext, useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -11,7 +12,7 @@ export const ProtectContext = ({children}) => {
 
     useEffect(()=> {
         const fetchProfile = async() => {
-            try{
+            try{ 
             const {data} = await axios.get("/users/profile")
             setUser(data.user)
             }
