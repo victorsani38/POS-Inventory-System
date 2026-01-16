@@ -20,15 +20,20 @@ const allowedOrigins = [
     "http://localhost:5173",
     "https://pos-inventory-system-gray.vercel.app"
 ]
-app.use(cors({origin:function(origin, callback){
-    if(!origin) return callback(null, true )
-    if(allowedOrigins.indexOf(origin)===-1){
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (!allowedOrigins.includes(origin)) {
         return callback(new Error(`CORS error for origin ${origin}`), false);
-    }
-    return callback(null, true)
-} ,
-    
-    credentials:true}));
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 const PORT = process.env.PORT || 1000
 app.use("/api/users", authRoute)
