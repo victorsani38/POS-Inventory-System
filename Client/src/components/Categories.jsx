@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import axios from "axios"
-import { useEffect } from 'react'
 
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import axios from "../api/axios";
 const Categories = () => {
     const [data, setData] = useState({
         categoryName:"", categoryDescription:""
