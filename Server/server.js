@@ -19,24 +19,14 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
-const allowedOrigins = [
+
+app.use(cors({
+  origin: [
     "http://localhost:5173",
     "https://pos-inventory-system-gray.vercel.app"
-]
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (!allowedOrigins.includes(origin)) {
-        return callback(new Error(`CORS error for origin ${origin}`), false);
-      }
-      return callback(null, true);
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+  ],
+  credentials: true
+}));
 
 const PORT = process.env.PORT || 1000
 app.use("/api/users", authRoute)
