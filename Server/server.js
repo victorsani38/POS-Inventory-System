@@ -35,7 +35,7 @@ app.use("/api/users", authRoute)
 app.use("/api/categories", categoryRoute)
 app.use("/api/suppliers", supplierRoute)
 app.use("/api/products", productRoute) 
-app.use("/api/users", userRoute)
+app.use("/api/profiles", userRoute)
 app.use("/api/orders", orderRoute)
 app.use('/api/dashboard', dashboardRoute)
 

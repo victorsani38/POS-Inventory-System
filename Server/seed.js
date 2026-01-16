@@ -16,4 +16,4 @@ const register = async() => {
     console.log('new user created')
 }
 register()
-
+ 
