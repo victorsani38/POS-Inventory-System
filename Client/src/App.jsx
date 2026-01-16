@@ -20,8 +20,8 @@ import Summary from './components/Summary'
 function App() {
 
   axios.defaults.baseURL = import.meta.env.VITE_API_URI +"/api"
-  axios.defaults.withCredentials = true
- 
+  axios.defaults.withCredentials = true  
+  
 
   return (
     <>
@@ -60,7 +60,7 @@ function App() {
       </Routes>
       </ProtectContext>
     </Router> 
-    </>
+    </> 
   )
 }
 
