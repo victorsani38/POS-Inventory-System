@@ -54,7 +54,7 @@ const Users = () => {
     const handleDelete = async(id) => {
       try{
       if(window.confirm("Are you sure you want to delete this user?")){
-        const res = await axios.delete(`/users/${id}`)
+        const res = await axios.delete(`/users /${id}`)
         if(res.data.success){
           alert("user deleted")
           fetchUsers()

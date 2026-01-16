@@ -13,7 +13,7 @@ const Profile = () => {
 
     const fetchUser = async() => {
         try{
-        const res = await axios.get('/users/profile')
+        const res = await axios.get('/profiles/profile')
         if(res.data.success){
             setUser({
             name:res.data.user.name,
@@ -34,7 +34,7 @@ const Profile = () => {
     const handleSubmit = async(e)=> {
         e.preventDefault()
         try{
-        const res = await axios.put('/users/edit', user) 
+        const res = await axios.put('/profiles/edit', user) 
         if(res.data.success){
             setEdit(false)
             alert("user updated successfully")
