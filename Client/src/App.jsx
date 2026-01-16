@@ -19,7 +19,7 @@ import Summary from './components/Summary'
 
 function App() {
 
-  axios.defaults.baseURL = "http://localhost:1000/api"
+  axios.defaults.baseURL = import.meta.env.VITE_API_URI +"/api"
   axios.defaults.withCredentials = true
  
 
