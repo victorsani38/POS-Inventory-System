@@ -6,7 +6,7 @@ const OrderSchema = new mongoose.Schema({
     quantity:{type:Number, required:true},
     price:{type:Number, required:true},
     totalPrice:{type:Number, required:true},
-    orderDate:{type:Date, default:Date.now}
+    orderDate:{type:Date, default:Date.now} 
 
 }) 
 
