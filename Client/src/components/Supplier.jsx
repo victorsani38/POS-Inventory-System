@@ -1,5 +1,6 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import axios from "../api/axios";
+
 
 const Supplier = () => {
     const [data, setData] = useState({

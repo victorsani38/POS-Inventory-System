@@ -1,10 +1,10 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import axios from "../api/axios";
 
 const Order = () => {
 
   const [orders, setOrders] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false) 
 
   const fetchOrders = async() => {
     try{
