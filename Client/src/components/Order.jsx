@@ -1,5 +1,6 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
+import API from '../api/axios'
 
 const Order = () => {
 
@@ -8,7 +9,7 @@ const Order = () => {
 
   const fetchOrders = async() => {
     try{
-    const res = await axios.get('/orders')
+    const res = await API.get('/orders')
     if(res.data.success){
       setOrders(res.data.orders)
     }

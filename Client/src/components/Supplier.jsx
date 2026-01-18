@@ -1,5 +1,6 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
+import API from '../api/axios'
 
 
 const Supplier = () => {
@@ -17,7 +18,7 @@ const Supplier = () => {
         if(editSupplier){
         const {name, email, phone, address} = data
         try{
-        const res = await axios.put(`/suppliers/${editSupplier}`, {
+        const res = await API.put(`/suppliers/${editSupplier}`, {
             name, email,phone, address
         })
         if(res.data.success){
@@ -34,7 +35,7 @@ const Supplier = () => {
         }else{
         const {name, email, phone, address} = data
         try{
-        const res = await axios.post("/suppliers/add", {
+        const res = await API.post("/suppliers/add", {
             name, email,phone, address
         })
         if(res.data.success){
@@ -54,7 +55,7 @@ const Supplier = () => {
     const fetchSupplier = async() => {
             setLoading(true)
             try{
-            const res = await axios.get('/suppliers/')
+            const res = await API.get('/suppliers/')
             if(res.data.success){
                 setSuppliers(res.data.suppliers)
                 setFilteredSuppliers(res.data.suppliers)
@@ -94,7 +95,7 @@ const Supplier = () => {
     const handleDelete = async(id)=> {
         try{
         if(window.confirm("Are you sure you want to delete this supplier?")){
-        const res = await axios.delete(`/suppliers/${id}`)
+        const res = await API.delete(`/suppliers/${id}`)
         if(res.data.success){
         alert("Supplier deleted")
         fetchSupplier()

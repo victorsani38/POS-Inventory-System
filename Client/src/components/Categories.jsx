@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import axios from "axios"
+import API from '../api/axios'
+
 const Categories = () => {
     const [data, setData] = useState({
         categoryName:"", categoryDescription:""
@@ -15,7 +16,7 @@ const Categories = () => {
         if(editCategory){
         const {categoryName, categoryDescription} = data
         try{
-        const res = await axios.put(`/categories/${editCategory}`,{
+        const res = await API.put(`/categories/${editCategory}`,{
             categoryName, categoryDescription
         })
         if(res.data.success){
@@ -32,7 +33,7 @@ const Categories = () => {
         }else{
         const {categoryName, categoryDescription} = data
         try{
-        const res = await axios.post('/categories/add',{
+        const res = await API.post('/categories/add',{
             categoryName, categoryDescription
         })
         if(res.data.success){
@@ -52,7 +53,7 @@ const Categories = () => {
     const fetchCategory = async() => {
         setLoading(true)
         try{
-          const res = await axios.get('/categories')
+          const res = await API.get('/categories')
           if(res.data.success){
           setCategories(res.data.categories)
           }
@@ -83,7 +84,7 @@ const Categories = () => {
     const handleDelete = async(id) => {
       try{
       if(window.confirm("Are you sure you want to delete this category?")){
-        const res = await axios.delete(`/categories/${id}`)
+        const res = await API.delete(`/categories/${id}`)
         if(res.data.success){
           alert("Category deleted")
           fetchCategory()

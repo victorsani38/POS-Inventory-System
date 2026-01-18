@@ -1,9 +1,10 @@
-import axios from 'axios'
+
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
 import {toast} from "react-hot-toast"
+import API from '../api/axios'
 
 const CustomerProduct = () => {
 
@@ -23,7 +24,7 @@ const CustomerProduct = () => {
      const fetchProducts = async() => {
             setLoading(true)
             try{
-            const res = await axios.get('/products/')
+            const res = await API.get('/products/')
             if(res.data.success){
                 setProducts(res.data.products)
                 setCategories(res.data.categories)
@@ -76,7 +77,7 @@ const CustomerProduct = () => {
     const handleSubmit = async(e)=>{
         e.preventDefault()
        try{
-         const res = await axios.post("/orders/add", {
+         const res = await API.post("/orders/add", {
             productId: data.productId,
       quantity: data.quantity,
       total: data.total

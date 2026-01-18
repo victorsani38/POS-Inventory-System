@@ -1,6 +1,7 @@
 
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
+import API from '../api/axios'
 
 const Summary = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -18,7 +19,7 @@ const Summary = () => {
   const fetchDashboard = async() => {
     setLoading(true)
     try{
-    const res = await axios.get("/dashboard")
+    const res = await API.get("/dashboard")
     if(res.data?.success && res.data?.dashboardData){
       console.log(res.data.dashboardData)
       setDashboardData(res.data.dashboardData)

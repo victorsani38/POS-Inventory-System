@@ -1,7 +1,8 @@
 
-import axios from "axios"
+
 import { createContext, useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import API from "../src/api/axios"
 
 
 export const AuthContext = createContext()
@@ -13,7 +14,7 @@ export const ProtectContext = ({children}) => {
     useEffect(()=> {
         const fetchProfile = async() => {
             try{ 
-            const {data} = await axios.get("/users/profile")
+            const {data} = await API.get("/users/profile")
             setUser(data.user)
             }
             catch(err){
@@ -29,7 +30,7 @@ export const ProtectContext = ({children}) => {
     const login = async(credentials) => {
         setLoading(true)
         try{
-        const {data} = await axios.post("/users/login", credentials)
+        const {data} = await API.post("/users/login", credentials)
         setUser(data.user)
         const rolePath = {
             admin:"/admin-dashboard",
@@ -52,7 +53,7 @@ export const ProtectContext = ({children}) => {
 
     const logout = async() => {
         try{
-        await axios.post('/users/logout')
+        await API.post('/users/logout')
         }
         catch(err){
             setUser(null)

@@ -1,5 +1,6 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
+import API from '../api/axios'
 
 
 const Products = () => {
@@ -19,7 +20,7 @@ const Products = () => {
         if(editProduct){
         const {name, des, price, stock, categoryId, supplierId, currency} = data
         try{
-        const res = await axios.put(`/products/${editProduct}`, {
+        const res = await API.put(`/products/${editProduct}`, {
             name, des, price, stock, categoryId, supplierId, currency
         })
         if(res.data.success){
@@ -36,7 +37,7 @@ const Products = () => {
         }else{
         const {name, des, price, stock, categoryId, supplierId, currency} = data
         try{
-        const res = await axios.post("/products/add", {
+        const res = await API.post("/products/add", {
             name, des, price, stock, categoryId, supplierId, currency
         })
         if(res.data.success){
@@ -56,7 +57,7 @@ const Products = () => {
     const fetchProducts = async() => {
             setLoading(true)
             try{
-            const res = await axios.get('/products/')
+            const res = await API.get('/products/')
             if(res.data.success){
                 setProducts(res.data.products)
                 setCategories(res.data.categories)
@@ -101,7 +102,7 @@ const Products = () => {
     const handleDelete = async(id)=> {
         try{
         if(window.confirm("Are you sure you want to delete this product?")){
-        const res = await axios.delete(`/products/${id}`)
+        const res = await API.delete(`/products/${id}`)
         if(res.data.success){
         alert("product deleted")
         fetchProducts()

@@ -1,6 +1,6 @@
 
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import API from '../api/axios'
 
 const Profile = () => {
 
@@ -14,7 +14,7 @@ const Profile = () => {
 
     const fetchUser = async() => {
         try{
-        const res = await axios.get('/profiles/profile')
+        const res = await API.get('/profiles/profile')
         if(res.data.success){
             setUser({
             name:res.data.user.name,
@@ -35,7 +35,7 @@ const Profile = () => {
     const handleSubmit = async(e)=> {
         e.preventDefault()
         try{
-        const res = await axios.put('/profiles/edit', user) 
+        const res = await API.put('/profiles/edit', user) 
         if(res.data.success){
             setEdit(false)
             alert("user updated successfully")

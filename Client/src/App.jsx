@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import { Toaster } from 'react-hot-toast'
-import axios from "axios"
 import { ProtectContext } from '../context/AuthContext'
 import { Root } from './utils/Root'
 import Login from './pages/Login'
@@ -19,8 +18,7 @@ import Summary from './components/Summary'
 
 function App() {
 
-  axios.defaults.baseURL = import.meta.env.VITE_API_URI +"/api"
-  axios.defaults.withCredentials = true  
+  
   
 
   return (

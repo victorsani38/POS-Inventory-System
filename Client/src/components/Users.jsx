@@ -1,7 +1,8 @@
-import axios from 'axios'
+
 import React, { useState } from 'react'
 
 import { useEffect } from 'react'
+import API from '../api/axios'
 
 const Users = () => {
     const [data, setData] = useState({
@@ -15,7 +16,7 @@ const Users = () => {
         e.preventDefault()
         const {name, email, password, address, role} = data
         try{
-        const res = await axios.post('/profiles/add',{
+        const res = await API.post('/profiles/add',{
             name, email, password, address, role
         })
         if(res.data.success){
@@ -35,7 +36,7 @@ const Users = () => {
     const fetchUsers = async() => {
         setLoading(true)
         try{
-          const res = await axios.get('/profiles')
+          const res = await API.get('/profiles')
           if(res.data.success){
           setUsers(res.data.users)
           }
@@ -55,7 +56,7 @@ const Users = () => {
     const handleDelete = async(id) => {
       try{
       if(window.confirm("Are you sure you want to delete this user?")){
-        const res = await axios.delete(`/profiles /${id}`)
+        const res = await API.delete(`/profiles /${id}`)
         if(res.data.success){
           alert("user deleted")
           fetchUsers()
