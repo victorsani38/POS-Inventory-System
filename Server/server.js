@@ -19,7 +19,25 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true})); 
-app.use(cors({origin:"https://pos-inventory-system-gray.vercel.app", credentials:true}))
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://pos-inventory-system-gray.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Postman / server calls
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 
 
