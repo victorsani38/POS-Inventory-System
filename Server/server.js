@@ -24,7 +24,7 @@ const allowedOrigins = [ "http://localhost:5173" ];
 if(process.env.NODE_ENV === "production"){
     allowedOrigins.push(process.env.FRONTEND_URL); // set this in Vercel env
 }
-
+ 
 app.use(cors({
     origin: function(origin, callback){
         if(!origin || allowedOrigins.indexOf(origin) !== -1){
