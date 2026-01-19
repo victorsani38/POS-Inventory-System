@@ -18,16 +18,24 @@ app.set("trust proxy", 1);
  
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true})); 
 
-
+const allowedOrigins = [ "http://localhost:5173" ];
+if(process.env.NODE_ENV === "production"){
+    allowedOrigins.push(process.env.FRONTEND_URL); // set this in Vercel env
+}
 
 app.use(cors({
-  origin: process.env.NODE_ENV === "production"
-    ? "https://pos-inventory-system-gray.vercel.app"
-    : "http://localhost:5173",
-  credentials: true
+    origin: function(origin, callback){
+        if(!origin || allowedOrigins.indexOf(origin) !== -1){
+            callback(null, true)
+        } else {
+            callback(new Error("Not allowed by CORS"))
+        }
+    },
+    credentials:true
 }));
+
 
 const PORT = process.env.PORT || 1000
 app.use("/api/users", authRoute)
