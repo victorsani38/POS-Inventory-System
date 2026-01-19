@@ -21,6 +21,23 @@ app.use(cookieParser());
 app.use(express.urlencoded({extended:true})); 
 
 
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "https://pos-inventory-system-gray.vercel.app"
+// ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin) return callback(null, true); // Postman / server calls
+
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://pos-inventory-system-gray.vercel.app"
@@ -28,16 +45,17 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Postman / server calls
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+    if (!origin) return callback(null, true); // allow Postman or server-to-server calls
+    if (allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error("Not allowed by CORS"));
   },
-  credentials: true
+  credentials: true,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
 }));
+
+// handle preflight OPTIONS requests globally
+
 
 
 
